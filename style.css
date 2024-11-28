@@ -1,0 +1,265 @@
+body {
+    background-color:azure;
+    font-family:Verdana, Tahoma, sans-serif;
+}
+
+button{
+    cursor: pointer;
+}
+
+#menu {
+    z-index: 10;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 8%;
+    background-color: rgba(0, 0, 0, 0.900);
+    border-bottom: 3px inset black;
+    color: gray;
+    font-size: 25px;
+    text-align: center;
+}
+
+#menu label {
+    margin: 10px;
+    cursor: pointer;
+}
+
+#platform-name{
+    color: blueviolet;
+}
+
+#menu label:hover {
+    color: aliceblue;
+    background-color: rgba(255, 255, 255, 0.050);
+    padding: 2px;
+    border: inset rgba(255, 255, 255, 0.050) 2px;
+}
+
+#introduction {
+    z-index: 5;
+    position: relative;
+    left: -7px;
+    width: 101.1%;
+    height: 630px;
+    background: linear-gradient(-0.10turn, black 25%, cyan 100%);
+    color: aliceblue;
+}
+
+#introduction div {
+    width: 80%;
+    background-color: rgba(0, 0, 0, 0.600);
+    border: outset black 3px;
+}
+
+#introduction button {
+    color: aliceblue;
+}
+
+.button{
+    cursor: pointer;
+    background-color: green;
+    border: outset greenyellow 3px;
+    color: aliceblue;
+    padding: 10px;
+    width: 80%;
+    margin: 10px;
+}
+
+.button:hover{
+    border:blue 3px inset;
+    background-color: blueviolet;
+}
+
+.selectorsBtn{
+    cursor: pointer;
+    margin: 0px;
+    padding: 2px;
+    border: outset 2px white;
+    background-color: rgba(220, 220, 220, 0.500);
+    width: max-content;
+    float: left;
+    width: 120px;
+}
+
+.Selected{
+    background-color: rgba(175, 219, 169, 0.500);
+    border-top-color: blue;
+}
+
+.selectorsBtn:hover{
+    border-bottom-color: yellow;
+}
+
+#initializationEditor{
+    z-index: 5;
+    position: fixed;
+    top:0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color:cadetblue;
+}
+
+#inputEditorData,#headerEditorData{
+    background-color: rgba(0, 0, 0, 0.500);
+    border: outset black 2px;
+    width: 80%;
+    color: aliceblue;
+}
+
+.selectors{
+    width: 99%;
+    padding: 5px;
+}
+
+#editorWindow{
+    margin-top: 60px;
+}
+
+#mainEditor{
+    display: flex;
+    margin-top: 2px;
+}
+
+#editorTitle{
+    border: outset gray 5px;
+    text-align: center;
+    background-color: gainsboro;
+}
+
+#editorItens, #editorResult{
+    border: inset gray 1px;
+    background-color: white;
+    height: 500px;
+}
+
+#editorItens{
+    width: 20%;
+    overflow-y: scroll;
+}
+#editorResult{
+    width: 80%;
+    overflow-y: scroll;
+}
+
+.pageSelector,.elementAdd{
+    width: 96%;
+    padding: 1%;
+    margin: 2%;
+    font-weight: bolder;
+    border: outset lightcyan 2px;
+    cursor: pointer;
+}
+
+.pageSelector:hover,.elementAdd:hover{
+    border-color: cyan;
+}
+
+.pageSelector{
+    text-align: left;
+    color: aliceblue;
+}
+
+.elementAdd{
+    text-align: center;
+    color: black;
+}
+
+#styleEditorWindow{
+    visibility: hidden;
+    z-index: 5;
+    position: fixed;
+    top:0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color:rgba(0, 0, 0, 0.800);
+    color: aliceblue;
+}
+
+#styleEditor{
+    width: 90%;
+    text-align: left;
+    height: 70%;
+    overflow-y: scroll;
+    border: 1px black solid;
+    padding: 2px;
+}
+
+#styleEditor input{
+    background-color: rgba(0, 0, 0, 0.200);
+    border: 2px ridge cadetblue;
+    color: aliceblue;
+    margin: 2px;
+}
+
+#styleEditor input:hover{
+    background-color: rgba(0, 0, 0, 0.400);
+    border-color: cyan;
+}
+
+#styleEditor textarea{
+    background-color: rgba(0, 0, 0, 0.200);
+    border: 2px ridge blueviolet;
+    color: aliceblue;
+    width: 80%;
+    height: 50px;
+}
+
+#styleEditor textarea:hover{
+    background-color: rgba(0, 0, 0, 0.400);
+    border-color: palevioletred;
+}
+
+#styleEditorClose{
+    float: left;
+    background-color: black;
+    border: black outset 2px;
+    margin: 1px;
+    color: aliceblue;
+}
+
+#styleEditorClose:hover{
+    color:brown;
+    border: brown inset 3px;
+}
+
+#styleEditorSave{
+    position: fixed;
+    bottom: 40px;
+    right: 90px;
+    background-color: green;
+    border: aliceblue outset 3px;
+    color: aliceblue;
+    width: 120px;
+}
+
+#styleEditorSave:hover{
+    border-style: inset;
+    background-color: chartreuse;
+    color:cadetblue;
+    cursor: pointer;
+}
+
+.projectList{
+    border: outset 5px black;
+    margin: 10px;
+    color: white;
+}
+.projectList:hover{
+    cursor: pointer;
+    border-color: aqua;
+}
+#searching input{
+    background-color: black;
+    border: 2px azure inset;
+    color: azure;
+}
+#searching button{
+    background-color: green;
+    border: 2px azure outset;
+    color: azure;
+    cursor: pointer;
+}

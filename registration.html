@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index Dev - Account</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="preassets/default.png" type="image/png">
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-database.js"></script>
+    <script src="main.js"></script>
+</head>
+
+<body onload="loadBody('login')">
+    <center>
+        <div id="menu" onclick="menuOpen()">
+            <label style="visibility: hidden;float: left;" id="menu-db">Index Dev</label>
+            <div id="menu-options">
+                <label id="platform-name" onclick="page('home')">Index Dev</label>|
+                <label onclick="page('create')">Create</label>|
+                <label onclick="page('explore')">Explore</label>|
+                <label onclick="page('tutorial')">Tutorial</label>|
+                <label onclick="page('catmeooww')">More</label>|
+                <label id="user-name" onclick="page('account')">Login</label>
+            </div>
+        </div>
+        <div id="introduction">
+            <br><br><br><br><br><br>
+            <div id="loginData">
+                <h1>Index Dev Account</h1>
+                <p class="coloring">Login in Index Dev to Create your Pages!</p>
+                <button id="1" class="selectorsBtn s1 Selected" onclick="selectButton('1','1',loginAccountMode)">
+                    Log-In Account
+                </button>
+                <button id="2" class="selectorsBtn s1" onclick="selectButton('1','2',createAccountMode)">
+                    Create Account
+                </button>
+                <br>
+                <hr>
+                <h3>Your Username</h3>
+                <input type='text' id='login-username'>
+                <h3>Your Password</h3>
+                <input type='password' id='login-userpassword'>
+                <hr>
+                <button class="button" id="logButton" onclick="LogAccount()">Log-In</button>
+                <p id="login-error"></p>
+            </div>
+        </div>
+    </center>
+</body>
+
+</html>

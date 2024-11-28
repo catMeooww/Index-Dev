@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index Dev - New Project</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="preassets/default.png" type="image/png">
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-database.js"></script>
+    <script src="main.js"></script>
+    <script src="editor.js"></script>
+</head>
+
+<body onload="loadBody('editor');" translate="no">
+    <center>
+        <div id="menu" onclick="menuOpen()">
+            <label style="visibility: hidden;float: left;" id="menu-db">Index Dev</label>
+            <div id="menu-options">
+                <label id="platform-name" onclick="page('home')">Index Dev</label>|
+                <label onclick="page('create')">Create</label>|
+                <label onclick="page('explore')">Explore</label>|
+                <label onclick="page('tutorial')">Tutorial</label>|
+                <label onclick="page('catmeooww')">More</label>|
+                <label id="user-name" onclick="page('account')">Login</label>
+            </div>
+        </div>
+
+        <div id="initializationEditor">
+            <br><br><br>
+            <hr>
+            <div id="headerEditorData">
+                <h1 class="coloring">Welcome to the Editor!</h1>
+                <h3>Create and share your web page!</h3>
+            </div>
+            <hr>
+            <button id="1" class="selectorsBtn s1 Selected" onclick="selectButton('1','1',startNew)">
+                Create New
+            </button>
+            <button id="2" class="selectorsBtn s1" onclick="selectButton('1','2',startExisting)">
+                Edit Existing
+            </button>
+            <br><br>
+            <div id="inputEditorData">
+                <p>Preparing your Editor...</p>
+                <b class="coloring">Be sure to be logged.</b>
+            </div>
+            <hr>
+        </div>
+
+        <div id="styleEditorWindow">
+            <div style="margin-top: 8%;">
+                <button onclick="closeWin()" id="styleEditorClose">X</button>
+                <label id="styleEditorLabel"></label>
+            </div>
+            <hr>
+            <div id="styleEditor"></div>
+        </div>
+    </center>
+
+    <div id="editorWindow">
+        <div id="editorTitle">
+            <h3 class="coloring" id="titleName"></h3>
+            <div style="display: inline;float: right;">
+                <img id="editorIcon" width="20" height="20">
+                <label id="editorHeader"></label>
+            </div>
+            <div class="selectors">
+                <button id="1" class="selectorsBtn s2" onclick="selectButton('2','1',showConfigOptions)">
+                    Options
+                </button>
+                <button id="2" class="selectorsBtn s2 Selected" onclick="selectButton('2','2',showPageEditor)">
+                    Pages
+                </button>
+                <button id="3" class="selectorsBtn s2" onclick="selectButton('2','3',showElementEditor)">
+                    Elements
+                </button>
+                <button id="4" class="selectorsBtn s2" onclick="selectButton('2','4',showCSSEditor)">
+                    Style
+                </button>
+                <button id="5" class="selectorsBtn s2" onclick="selectButton('2','5',showScriptEditor)">
+                    Events
+                </button>
+            </div>
+            <br>
+        </div>
+
+        <center>
+            <div id="mainEditor">
+                <div id="editorItens">
+
+                </div>
+                <div id="editorResult">
+
+                </div>
+            </div>
+        </center>
+    </div>
+</body>
+
+</html>

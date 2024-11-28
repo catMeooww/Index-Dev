@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index Dev - Page Creator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="preassets/default.png" type="image/png">
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-database.js"></script>
+    <script src="main.js"></script>
+</head>
+<body onload="loadBody('main');listProjects()">
+    <center>
+        <div id="menu" onclick="menuOpen()">
+            <label style="visibility: hidden;float: left;" id="menu-db">Index Dev</label>
+            <div id="menu-options">
+                <label id="platform-name" onclick="page('home')">Index Dev</label>|
+                <label onclick="page('create')">Create</label>|
+                <label onclick="page('explore')">Explore</label>|
+                <label onclick="page('tutorial')">Tutorial</label>|
+                <label onclick="page('catmeooww')">More</label>|
+                <label id="user-name" onclick="page('account')">Login</label>
+            </div>
+        </div>
+        <div id="introduction">
+            <br><br>
+            <br><br>
+            <div>
+                <h1>Explore <b class="coloring">Index Dev</b> Projects</h1>
+            </div>
+            <br><br>
+            <br><br>
+            <div>
+                <p>Some public pages on the platform</p>
+            </div>
+            <br><br>
+            <br><br>
+            <div id="searching">
+                <p>Search for Projects</p>
+                <input id="searcher">
+                <button onclick="setSearch()">Search</button>
+                <br><br>
+            </div>
+        </div>
+        <div id="output">
+            
+        </div>
+    </center>
+</body>
+
+</html>

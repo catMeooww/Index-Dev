@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="editorHeader">Loading</title>
+    <link rel="stylesheet" href="style.css">
+    <link id="editorIcon" rel="shortcut icon" href="preassets/default.png" type="image/png">
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-database.js"></script>
+    <script src="main.js"></script>
+    <script src="project.js"></script>
+    <style>
+        #mainEditor{
+            position: absolute;
+            top:0px;
+            left: 0px;
+            width: 100%;
+            height: 99%;
+        }
+        #editorItens,#editorResult{
+            height: 100%;
+        }
+
+        #menu{
+            height: 1px;
+        }
+        #menu-options{
+            visibility: hidden;
+        }
+    </style>
+</head>
+
+<body onload="loadBody('page');loadProjectData()" translate="no">
+    <center>
+        <div id="menu" onclick="menuOpen()" onmouseover="menuShow()" onmouseleave="menuHide()">
+            <label style="visibility: hidden;float: left;" id="menu-db">Index Dev</label>
+            <div id="menu-options">
+                <label id="platform-name" onclick="page('home')">Index Dev</label>|
+                <label onclick="page('create')">Create</label>|
+                <label onclick="page('explore')">Explore</label>|
+                <label onclick="page('tutorial')">Tutorial</label>|
+                <label onclick="page('catmeooww')">More</label>|
+                <label id="user-name" onclick="page('account')">Login</label>
+            </div>
+        </div>
+            <div id="mainEditor">
+                <div id="editorItens">
+
+                </div>
+                <div id="editorResult">
+
+                </div>
+            </div>
+    </center>
+</body>
+
+</html>
