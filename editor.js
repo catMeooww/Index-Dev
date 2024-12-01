@@ -24,27 +24,91 @@ function startEditor(id = "") {
         }
     } else if (mode == "existing"){
         mode = id;
+        var projectref = firebase.database().ref("/projects/" + mode + "/projectName");
+        var pagesref = firebase.database().ref("/projects/" + mode + "/content");
+        var selectorref = firebase.database().ref("/projects/" + mode + "/selector");
+        readed_name = false;
+        readed_pages = false;
+        readed_selector = false;
+        projectref.on("value", data => {
+            projectName = data.val();
+            if (!readed_name) {
+                readed_name = projectName;
+                selectorref.on("value", data => {
+                    selectorConfig = data.val();
+                    if (!readed_selector){
+                        readed_selector = true;
+                        pagesref.on("value", data => {
+                            pages = data.val();
+                            console.log(pages)
+                            if (!readed_pages) {
+                                readed_pages = pages;
+                                if (readed_name != undefined && readed_pages != undefined && readed_selector != undefined) {
+                                    showPageEditor();
+                                    showPage();
+                                    document.getElementById("initializationEditor").style.visibility = "hidden";
+                                    document.getElementById("titleName").innerHTML = "Editing: " + projectName;
+                                    document.title = "Index Dev - " + projectName;
+                                } else {
+                                    document.getElementById("editorResult").innerHTML = "Could not find this page";
+                                }
+                            }
+                        });
+                    }
+                });
+            }
+        });
     }
+}
+
+function listUserProjects(){
+    firebase.database().ref("/projects/").on('value', function (snapshot) {
+        document.getElementById("editProjects").innerHTML = "";
+        snapshot.forEach(function (childSnapshot) {
+            childKey = childSnapshot.key; childData = childSnapshot.val();
+
+            firebaseMessageId = childKey;
+            projectData = childData;
+
+            projectName = projectData['projectName'];
+            whoSent = projectData['creator'];
+            isPublic = projectData['isPublic'];
+
+            nameH2 = "<h2>" + projectName + "</h2>";
+            bottomLabel = "<label>Published: " + isPublic + "</label><br><br>";
+            backgroundColor = "rgba("+Math.floor(Math.random()*200)+","+Math.floor(Math.random()*200)+","+Math.floor(Math.random()*200)+",0.9)";
+
+            projectDiv = "<div style='background-color:"+backgroundColor+";' class='projectList' id='" + firebaseMessageId + "' onclick='startEditor(this.id)'>" + nameH2 + bottomLabel + "</div>";
+
+            if (whoSent == user) {
+                document.getElementById("editProjects").innerHTML += projectDiv;
+            }
+        });
+    });
 }
 
 function windowEditorPage(p) {
     mode = p;
-    if (logged == true) {
-        if (p == "new") {
-            pageTitle = "<h2>Start your Project " + user + "!</h2>";
-            pageDetails = "<h3>What is your page's name?</h3>";
-            editorInputName = "<input id='projectName'>";
-            startButton = "<button class='button' onclick='startEditor()'>Create!</button>";
-            errorLine = "<p id='errorEditorData'>Example: My Blog Page</p>";
-            document.getElementById("inputEditorData").innerHTML = pageTitle + pageDetails + editorInputName + "<hr>" + startButton + errorLine;
-        } else if (p == "existing") {
-            pageTitle = "<h2>Continue your Project " + user + "!</h2>";
-            pageDetails = "<h3>Edit your pages:</h3>";
-            document.getElementById("inputEditorData").innerHTML = pageTitle + pageDetails;
+    if (!testMobile){
+        if (logged) {
+            if (p == "new") {
+                pageTitle = "<h2>Start your Project " + user + "!</h2>";
+                pageDetails = "<h3>What is your page's name?</h3>";
+                editorInputName = "<input id='projectName'>";
+                startButton = "<button class='button' onclick='startEditor()'>Create!</button>";
+                errorLine = "<p id='errorEditorData'>Example: My Blog Page</p>";
+                document.getElementById("inputEditorData").innerHTML = pageTitle + pageDetails + editorInputName + "<hr>" + startButton + errorLine;
+            } else if (p == "existing") {
+                pageTitle = "<h2>Continue your Project " + user + "!</h2>";
+                pageDetails = "<h3>Edit your pages:</h3>";
+                projectListDiv = "<div id='editProjects'></div>";
+                document.getElementById("inputEditorData").innerHTML = pageTitle + pageDetails + projectListDiv;
+                listUserProjects();
+            }
+        } else {
+            document.getElementById("inputEditorData").innerHTML = "<p>You need to be logged in to create your web page</p>";
         }
-    } else {
-        document.getElementById("inputEditorData").innerHTML = "<p>You need to be logged in to create your web page</p>";
-    }
+    } 
 }
 
 //starting
@@ -461,6 +525,14 @@ function showPage(){
 function publish(public){
     if (mode == "new"){
         firebase.database().ref("/projects/").push({
+            projectName:projectName,
+            selector:selectorConfig,
+            creator:user,
+            content:pages,
+            isPublic:public
+        });
+    } else {
+        firebase.database().ref("/projects/"+mode).update({
             projectName:projectName,
             selector:selectorConfig,
             creator:user,

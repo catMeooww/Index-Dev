@@ -263,3 +263,10 @@ button{
     color: azure;
     cursor: pointer;
 }
+#editProjects{
+    width: 90%;
+    height: 160px;
+    border: inset 5px black;
+    padding: 5px;
+    overflow-y: scroll;
+}

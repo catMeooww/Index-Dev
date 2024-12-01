@@ -25,6 +25,14 @@ function loadBody(window) {
         if (window == 'editor'){
             document.getElementById("inputEditorData").innerHTML = "<h3>No Mobile Support</h3><p>We sorry, but there is not support for mobile in the editor.</p>"
         }
+        if (window == 'page'){
+            document.getElementById("mainEditor").style.display = "block";
+            document.getElementById("editorItens").style.width = "100%";
+            document.getElementById("editorItens").style.height = "10%";
+            document.getElementById("editorItens").style.marginTop = "10%";
+            document.getElementById("editorResult").style.width = "100%";
+            document.getElementById("editorResult").style.height = "90%";
+        }
     }
     coloring = document.getElementsByClassName('coloring');
     for (i = 0; i < coloring.length; i++) {

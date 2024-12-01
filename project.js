@@ -2,7 +2,7 @@ projectId = "";
 projectName = "";
 pages = [];
 selectorConfig = {bg:'rgb',color:[255,255,255]};
-nowPage = 1;
+nowPage = 0;
 
 function loadProjectData() {
     url = window.location.href
@@ -15,23 +15,31 @@ function loadProjectData() {
         }
         var projectref = firebase.database().ref("/projects/" + projectId + "/projectName");
         var pagesref = firebase.database().ref("/projects/" + projectId + "/content");
+        var selectorref = firebase.database().ref("/projects/" + projectId + "/selector");
         readed_name = false;
         readed_pages = false;
+        readed_selector = false;
         projectref.on("value", data => {
             projectName = data.val();
             if (!readed_name) {
                 readed_name = projectName;
-                pagesref.on("value", data => {
-                    pages = data.val();
-                    console.log(pages)
-                    if (!readed_pages) {
-                        readed_pages = pages;
-                        if (readed_name != undefined && readed_pages != undefined) {
-                            showPageList();
-                            showPage();
-                        } else {
-                            document.getElementById("editorResult").innerHTML = "Could not find this page";
-                        }
+                selectorref.on("value", data => {
+                    selectorConfig = data.val();
+                    if (!readed_selector){
+                        readed_selector = true;
+                        pagesref.on("value", data => {
+                            pages = data.val();
+                            console.log(pages)
+                            if (!readed_pages) {
+                                readed_pages = pages;
+                                if (readed_name != undefined && readed_pages != undefined && readed_selector != undefined) {
+                                    showPageList();
+                                    showPage();
+                                } else {
+                                    document.getElementById("editorResult").innerHTML = "Could not find this page";
+                                }
+                            }
+                        });
                     }
                 });
             }
