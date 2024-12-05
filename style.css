@@ -167,7 +167,7 @@ button{
     color: black;
 }
 
-#styleEditorWindow{
+#styleEditorWindow, #finishedEditorWindow{
     visibility: hidden;
     z-index: 5;
     position: fixed;

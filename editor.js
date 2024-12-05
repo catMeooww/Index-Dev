@@ -523,6 +523,12 @@ function showPage(){
 }
 
 function publish(public){
+    document.getElementById("finishedEditorWindow").style.visibility = 'visible';
+    finalName = "<p>Project: "+projectName+"</p>";
+    finalCreator = "<p>By: "+user+"</p>";
+    finalPages = "<p>Pages: "+pages.length+"</p>";
+    finalPublicity = "<p>Is Public: "+public+"</p>";
+    document.getElementById("finalResults").innerHTML = finalName + finalCreator + finalPages + finalPublicity;
     if (mode == "new"){
         firebase.database().ref("/projects/").push({
             projectName:projectName,
